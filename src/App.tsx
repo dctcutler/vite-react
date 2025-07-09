@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Wine, Heart, Utensils, Sparkles, Filter, RotateCcw } from 'lucide-react';
 
 interface Wine {
   id: number;
@@ -156,16 +155,14 @@ const WineConfigurator: React.FC = () => {
 
   const SelectionButton: React.FC<SelectionButtonProps> = ({ item, isSelected, onClick, category }) => {
     const bgColor = isSelected ? 'bg-purple-600 text-white' : 'bg-gray-100 hover:bg-gray-200 text-gray-700';
-    const icon = category === 'words' ? <Sparkles className="w-4 h-4" /> : 
-                category === 'foods' ? <Utensils className="w-4 h-4" /> : 
-                <Heart className="w-4 h-4" />;
+    const emoji = category === 'words' ? '✨' : category === 'foods' ? '🍽️' : '❤️';
     
     return (
       <button
         onClick={onClick}
         className={`${bgColor} px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 flex items-center gap-2 hover:scale-105 hover:shadow-md`}
       >
-        {icon}
+        <span>{emoji}</span>
         {item}
       </button>
     );
@@ -207,7 +204,7 @@ const WineConfigurator: React.FC = () => {
         <span className="text-xs bg-gray-100 px-2 py-1 rounded-full text-gray-600">
           {wine.calories} Calories
         </span>
-        <Wine className="w-5 h-5 text-purple-500" />
+        <span className="text-2xl">🍷</span>
       </div>
     </div>
   );
@@ -217,7 +214,7 @@ const WineConfigurator: React.FC = () => {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-gray-800 mb-2 flex items-center justify-center gap-3">
-            <Wine className="w-10 h-10 text-purple-600" />
+            <span className="text-4xl">🍷</span>
             Black Box Wine Configurator
           </h1>
           <p className="text-lg text-gray-600">Find your perfect wine match by selecting your preferences</p>
@@ -227,7 +224,7 @@ const WineConfigurator: React.FC = () => {
           <div className="grid md:grid-cols-3 gap-8">
             <div>
               <h2 className="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
-                <Sparkles className="w-5 h-5 text-purple-600" />
+                <span>✨</span>
                 Describe Your Taste
               </h2>
               <div className="flex flex-wrap gap-2">
@@ -245,7 +242,7 @@ const WineConfigurator: React.FC = () => {
 
             <div>
               <h2 className="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
-                <Utensils className="w-5 h-5 text-purple-600" />
+                <span>🍽️</span>
                 What Are You Eating?
               </h2>
               <div className="flex flex-wrap gap-2">
@@ -263,7 +260,7 @@ const WineConfigurator: React.FC = () => {
 
             <div>
               <h2 className="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
-                <Heart className="w-5 h-5 text-purple-600" />
+                <span>❤️</span>
                 What's Your Mood?
               </h2>
               <div className="flex flex-wrap gap-2">
@@ -285,7 +282,7 @@ const WineConfigurator: React.FC = () => {
               onClick={resetAll}
               className="flex items-center gap-2 px-6 py-3 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-medium transition-all duration-200"
             >
-              <RotateCcw className="w-4 h-4" />
+              <span>🔄</span>
               Reset All
             </button>
           </div>
@@ -294,7 +291,7 @@ const WineConfigurator: React.FC = () => {
         {showResults && (
           <div className="bg-white rounded-2xl shadow-xl p-8">
             <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
-              <Filter className="w-6 h-6 text-purple-600" />
+              <span>🎯</span>
               Your Perfect Wine Matches
             </h2>
             
@@ -306,7 +303,7 @@ const WineConfigurator: React.FC = () => {
               </div>
             ) : (
               <div className="text-center py-12">
-                <Wine className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+                <span className="text-6xl mb-4 block">🍷</span>
                 <p className="text-xl text-gray-600 mb-2">No matches found</p>
                 <p className="text-gray-500">Try selecting different preferences to find your perfect wine!</p>
               </div>
@@ -316,7 +313,7 @@ const WineConfigurator: React.FC = () => {
 
         {!showResults && (
           <div className="text-center py-12">
-            <Wine className="w-20 h-20 text-purple-400 mx-auto mb-4 animate-pulse" />
+            <span className="text-8xl mb-4 block animate-pulse">🍷</span>
             <p className="text-xl text-gray-600 mb-2">Select your preferences above</p>
             <p className="text-gray-500">We'll find the perfect Black Box wine for you!</p>
           </div>
