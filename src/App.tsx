@@ -213,23 +213,19 @@ const WineSelector: React.FC = () => {
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-50 px-8 py-8">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-6 px-4">
-          <h1 className="text-4xl font-bold text-gray-800 mb-2 flex items-center justify-center gap-3">
-            <span className="text-4xl">🍷</span>
-            Black Box Wine Selector
+          <h1 className="text-4xl font-bold text-gray-800 mb-3">
+            🍷Black Box Wine Selector
           </h1>
-          <p className="text-lg text-gray-600 mb-2">Find your perfect wine match by selecting your preferences</p>
-          <p className="text-sm text-gray-500 italic mb-4">Testing by #1 Fan, David Cutler</p>
+          <p className="text-lg text-gray-600 mb-4">Find your perfect wine match by selecting your preferences below</p>
           
-          <div className="space-y-2 mb-4">
-            <p className="text-lg text-gray-700">Select your preferences below</p>
-            <p className="text-base text-gray-600">We'll find the perfect Black Box wine for you!</p>
-            <div className="flex items-center justify-center gap-2 text-sm text-gray-500">
-              <span>🔄</span>
-              <span><strong>Reset All</strong> (to try any combinations again)</span>
-            </div>
+          <p className="text-base text-gray-600 mb-4">We'll find the perfect Black Box wine for you!</p>
+          
+          <div className="flex items-center justify-center gap-2 text-sm text-gray-500 mb-6">
+            <span>🔄</span>
+            <span><strong>Reset All</strong> (to try any combinations again)</span>
           </div>
           
-          <hr className="border-gray-300 my-6" />
+          <hr className="border-gray-300" />
         </div>
 
         <div className="bg-white rounded-2xl shadow-xl p-8 mb-8 mx-4">
@@ -326,10 +322,12 @@ const WineSelector: React.FC = () => {
         {!showResults && (
           <div className="text-center py-12 px-4">
             <span className="text-8xl mb-4 block animate-pulse">🍷</span>
-            <p className="text-xl text-gray-600 mb-2">Select your preferences above</p>
-            <p className="text-gray-500">We'll find the perfect Black Box wine for you!</p>
           </div>
         )}
+
+        <div className="text-center mt-8 px-4">
+          <p className="text-sm text-gray-500 italic">Testing by #1 Fan, David@DavidCutler.net</p>
+        </div>
       </div>
     </div>
   );
