@@ -220,9 +220,14 @@ const WineSelector: React.FC = () => {
           
           <p className="text-base text-gray-600 mb-4">We'll find the perfect Black Box wine for you!</p>
           
-          <div className="flex items-center justify-center gap-2 text-sm text-gray-500 mb-6">
-            <span>🔄</span>
-            <span><strong>Reset All</strong> (to try any combinations again)</span>
+          <div className="flex items-center justify-center gap-2 text-sm mb-6">
+            <button
+              onClick={resetAll}
+              className="flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-600 rounded-lg font-medium transition-all duration-200"
+            >
+              <span>🔄</span>
+              <span><strong>Reset All</strong> (to try any combinations again)</span>
+            </button>
           </div>
           
           <hr className="border-gray-300" />
