@@ -13,7 +13,7 @@ interface Wine {
   matchScore?: number;
 }
 
-const WineConfigurator: React.FC = () => {
+const WineSelector: React.FC = () => {
   const [selectedWords, setSelectedWords] = useState<string[]>([]);
   const [selectedFoods, setSelectedFoods] = useState<string[]>([]);
   const [selectedMoods, setSelectedMoods] = useState<string[]>([]);
@@ -27,7 +27,7 @@ const WineConfigurator: React.FC = () => {
       collection: "The Classics",
       description: "Full-bodied with rich berry flavors and hints of oak",
       words: ["bold", "rich", "sophisticated", "intense", "classic"],
-      foods: ["red meat", "grilled steak", "dark chocolate", "aged cheese", "lamb"],
+      foods: ["red meat", "grilled steak", "chocolate", "aged cheese", "lamb"],
       moods: ["romantic", "confident", "sophisticated", "evening", "celebratory"],
       color: "#722F37",
       calories: "Regular"
@@ -60,7 +60,7 @@ const WineConfigurator: React.FC = () => {
       collection: "Lower Calorie",
       description: "Smooth and buttery with apple and vanilla undertones",
       words: ["smooth", "buttery", "elegant", "balanced", "refined"],
-      foods: ["lobster", "creamy pasta", "roasted chicken", "brie cheese", "risotto"],
+      foods: ["lobster", "creamy pasta", "roasted chicken", "cheese", "risotto"],
       moods: ["elegant", "refined", "comfortable", "sophisticated", "balanced"],
       color: "#F7E7CE",
       calories: "Lower"
@@ -71,7 +71,7 @@ const WineConfigurator: React.FC = () => {
       collection: "Lower Calorie",
       description: "Light and refreshing with a clean, crisp finish",
       words: ["light", "crisp", "clean", "delicate", "pure"],
-      foods: ["fish", "summer salads", "vegetables", "light cheese", "fruit"],
+      foods: ["fish", "summer salads", "vegetables", "cheese", "fruit"],
       moods: ["light", "refreshing", "casual", "healthy", "carefree"],
       color: "#F0F8FF",
       calories: "Lower"
@@ -82,7 +82,7 @@ const WineConfigurator: React.FC = () => {
       collection: "Lower Calorie",
       description: "Bold red with reduced calories but full flavor",
       words: ["bold", "satisfying", "robust", "full-flavored", "balanced"],
-      foods: ["lean meats", "vegetables", "mushrooms", "herbs", "grilled foods"],
+      foods: ["lean meats", "vegetables", "mushrooms", "herbs", "chocolate"],
       moods: ["satisfied", "balanced", "health-conscious", "robust", "evening"],
       color: "#8B0000",
       calories: "Lower"
@@ -210,17 +210,18 @@ const WineConfigurator: React.FC = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-50 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-50 p-8">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-gray-800 mb-2 flex items-center justify-center gap-3">
             <span className="text-4xl">🍷</span>
-            Black Box Wine Configurator
+            Black Box Wine Selector
           </h1>
-          <p className="text-lg text-gray-600">Find your perfect wine match by selecting your preferences</p>
+          <p className="text-lg text-gray-600 mb-2">Find your perfect wine match by selecting your preferences</p>
+          <p className="text-sm text-gray-500 italic">Testing by #1 Fan, David Cutler</p>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">
+        <div className="bg-white rounded-2xl shadow-xl p-8 mb-8 mx-4">
           <div className="grid md:grid-cols-3 gap-8">
             <div>
               <h2 className="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
@@ -289,7 +290,7 @@ const WineConfigurator: React.FC = () => {
         </div>
 
         {showResults && (
-          <div className="bg-white rounded-2xl shadow-xl p-8">
+          <div className="bg-white rounded-2xl shadow-xl p-8 mx-4">
             <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
               <span>🎯</span>
               Your Perfect Wine Matches
@@ -323,4 +324,4 @@ const WineConfigurator: React.FC = () => {
   );
 };
 
-export default WineConfigurator;
+export default WineSelector;
