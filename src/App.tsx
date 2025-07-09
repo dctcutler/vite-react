@@ -210,20 +210,31 @@ const WineSelector: React.FC = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-50 p-8">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-50 px-8 py-8">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-8">
+        <div className="text-center mb-6 px-4">
           <h1 className="text-4xl font-bold text-gray-800 mb-2 flex items-center justify-center gap-3">
             <span className="text-4xl">🍷</span>
             Black Box Wine Selector
           </h1>
           <p className="text-lg text-gray-600 mb-2">Find your perfect wine match by selecting your preferences</p>
-          <p className="text-sm text-gray-500 italic">Testing by #1 Fan, David Cutler</p>
+          <p className="text-sm text-gray-500 italic mb-4">Testing by #1 Fan, David Cutler</p>
+          
+          <div className="space-y-2 mb-4">
+            <p className="text-lg text-gray-700">Select your preferences below</p>
+            <p className="text-base text-gray-600">We'll find the perfect Black Box wine for you!</p>
+            <div className="flex items-center justify-center gap-2 text-sm text-gray-500">
+              <span>🔄</span>
+              <span><strong>Reset All</strong> (to try any combinations again)</span>
+            </div>
+          </div>
+          
+          <hr className="border-gray-300 my-6" />
         </div>
 
         <div className="bg-white rounded-2xl shadow-xl p-8 mb-8 mx-4">
           <div className="grid md:grid-cols-3 gap-8">
-            <div>
+            <div className="px-4">
               <h2 className="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
                 <span>✨</span>
                 Describe Your Taste
@@ -241,7 +252,7 @@ const WineSelector: React.FC = () => {
               </div>
             </div>
 
-            <div>
+            <div className="px-4">
               <h2 className="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
                 <span>🍽️</span>
                 What Are You Eating?
@@ -259,7 +270,7 @@ const WineSelector: React.FC = () => {
               </div>
             </div>
 
-            <div>
+            <div className="px-4">
               <h2 className="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
                 <span>❤️</span>
                 What's Your Mood?
@@ -278,7 +289,7 @@ const WineSelector: React.FC = () => {
             </div>
           </div>
 
-          <div className="flex justify-center mt-8 gap-4">
+          <div className="flex justify-center mt-8 gap-4 px-4">
             <button
               onClick={resetAll}
               className="flex items-center gap-2 px-6 py-3 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-medium transition-all duration-200"
@@ -291,19 +302,19 @@ const WineSelector: React.FC = () => {
 
         {showResults && (
           <div className="bg-white rounded-2xl shadow-xl p-8 mx-4">
-            <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+            <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2 px-4">
               <span>🎯</span>
               Your Perfect Wine Matches
             </h2>
             
             {filteredWines.length > 0 ? (
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
                 {filteredWines.map(wine => (
                   <WineCard key={wine.id} wine={wine} />
                 ))}
               </div>
             ) : (
-              <div className="text-center py-12">
+              <div className="text-center py-12 px-4">
                 <span className="text-6xl mb-4 block">🍷</span>
                 <p className="text-xl text-gray-600 mb-2">No matches found</p>
                 <p className="text-gray-500">Try selecting different preferences to find your perfect wine!</p>
@@ -313,7 +324,7 @@ const WineSelector: React.FC = () => {
         )}
 
         {!showResults && (
-          <div className="text-center py-12">
+          <div className="text-center py-12 px-4">
             <span className="text-8xl mb-4 block animate-pulse">🍷</span>
             <p className="text-xl text-gray-600 mb-2">Select your preferences above</p>
             <p className="text-gray-500">We'll find the perfect Black Box wine for you!</p>
