@@ -1,14 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import { Wine, Heart, Utensils, Sparkles, Filter, RotateCcw } from 'lucide-react';
 
-const WineConfigurator = () => {
-  const [selectedWords, setSelectedWords] = useState([]);
-  const [selectedFoods, setSelectedFoods] = useState([]);
-  const [selectedMoods, setSelectedMoods] = useState([]);
-  const [filteredWines, setFilteredWines] = useState([]);
-  const [showResults, setShowResults] = useState(false);
+interface Wine {
+  id: number;
+  name: string;
+  collection: string;
+  description: string;
+  words: string[];
+  foods: string[];
+  moods: string[];
+  color: string;
+  calories: string;
+  matchScore?: number;
+}
 
-  const wines = [
+const WineConfigurator: React.FC = () => {
+  const [selectedWords, setSelectedWords] = useState<string[]>([]);
+  const [selectedFoods, setSelectedFoods] = useState<string[]>([]);
+  const [selectedMoods, setSelectedMoods] = useState<string[]>([]);
+  const [filteredWines, setFilteredWines] = useState<Wine[]>([]);
+  const [showResults, setShowResults] = useState<boolean>(false);
+
+  const wines: Wine[] = [
     {
       id: 1,
       name: "Cabernet Sauvignon",
@@ -83,7 +96,7 @@ const WineConfigurator = () => {
   
   const moodOptions = ["romantic", "casual", "sophisticated", "energetic", "relaxed", "confident", "social", "elegant", "healthy", "celebratory", "refreshing", "balanced", "uplifting", "comfortable", "carefree", "evening", "daytime"];
 
-  const toggleSelection = (item, selectedArray, setSelectedArray) => {
+  const toggleSelection = (item: string, selectedArray: string[], setSelectedArray: React.Dispatch<React.SetStateAction<string[]>>) => {
     if (selectedArray.includes(item)) {
       setSelectedArray(selectedArray.filter(selected => selected !== item));
     } else {
@@ -91,7 +104,7 @@ const WineConfigurator = () => {
     }
   };
 
-  const calculateMatch = (wine) => {
+  const calculateMatch = (wine: Wine): number => {
     const wordMatches = selectedWords.filter(word => wine.words.includes(word)).length;
     const foodMatches = selectedFoods.filter(food => wine.foods.includes(food)).length;
     const moodMatches = selectedMoods.filter(mood => wine.moods.includes(mood)).length;
@@ -115,8 +128,8 @@ const WineConfigurator = () => {
     }));
 
     const sortedWines = winesWithScores
-      .filter(wine => wine.matchScore > 0)
-      .sort((a, b) => b.matchScore - a.matchScore);
+      .filter(wine => wine.matchScore! > 0)
+      .sort((a, b) => b.matchScore! - a.matchScore!);
 
     setFilteredWines(sortedWines);
     setShowResults(true);
@@ -134,7 +147,14 @@ const WineConfigurator = () => {
     getRecommendations();
   }, [selectedWords, selectedFoods, selectedMoods]);
 
-  const SelectionButton = ({ item, isSelected, onClick, category }) => {
+  interface SelectionButtonProps {
+    item: string;
+    isSelected: boolean;
+    onClick: () => void;
+    category: string;
+  }
+
+  const SelectionButton: React.FC<SelectionButtonProps> = ({ item, isSelected, onClick, category }) => {
     const bgColor = isSelected ? 'bg-purple-600 text-white' : 'bg-gray-100 hover:bg-gray-200 text-gray-700';
     const icon = category === 'words' ? <Sparkles className="w-4 h-4" /> : 
                 category === 'foods' ? <Utensils className="w-4 h-4" /> : 
@@ -151,7 +171,11 @@ const WineConfigurator = () => {
     );
   };
 
-  const WineCard = ({ wine }) => (
+  interface WineCardProps {
+    wine: Wine;
+  }
+
+  const WineCard: React.FC<WineCardProps> = ({ wine }) => (
     <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200 hover:shadow-xl transition-all duration-300 transform hover:scale-105">
       <div className="flex items-center gap-3 mb-4">
         <div 
@@ -175,7 +199,7 @@ const WineConfigurator = () => {
               style={{ width: `${wine.matchScore}%` }}
             />
           </div>
-          <span className="text-sm font-bold text-purple-600">{Math.round(wine.matchScore)}%</span>
+          <span className="text-sm font-bold text-purple-600">{Math.round(wine.matchScore || 0)}%</span>
         </div>
       </div>
       
@@ -201,7 +225,6 @@ const WineConfigurator = () => {
 
         <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">
           <div className="grid md:grid-cols-3 gap-8">
-            {/* Words Section */}
             <div>
               <h2 className="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
                 <Sparkles className="w-5 h-5 text-purple-600" />
@@ -220,7 +243,6 @@ const WineConfigurator = () => {
               </div>
             </div>
 
-            {/* Foods Section */}
             <div>
               <h2 className="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
                 <Utensils className="w-5 h-5 text-purple-600" />
@@ -239,7 +261,6 @@ const WineConfigurator = () => {
               </div>
             </div>
 
-            {/* Moods Section */}
             <div>
               <h2 className="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
                 <Heart className="w-5 h-5 text-purple-600" />
@@ -270,7 +291,6 @@ const WineConfigurator = () => {
           </div>
         </div>
 
-        {/* Results Section */}
         {showResults && (
           <div className="bg-white rounded-2xl shadow-xl p-8">
             <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
